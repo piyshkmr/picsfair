@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="{% static 'main/style.css' %}" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>
+      {% block title %}Picsfair - fair of images{% endblock title %}
+    </title>
+  </head>
+  <body>
+    <header id="header" class="pt-4">
+      <div class="container d-flex flex-column align-items-center">
+        <h1 class="text-light mb-3"><a id="logo" href="/">Picsfair</a></h1>
+        <form id="searchbar" action="{% url 'search'  %}" class="d-flex w-100">
+          <input
+            name="query"
+            class="form-control me-2"
+            type="search"
+            placeholder="Search for an image"
+            aria-label="Search"
+            required
+          />
+          <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
+      </div>
+    </header>
+    <div class="container my-4 text-light">
+      {% block body %}{% endblock body %}
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="{% static 'main/script.js' %}"></script>
+  </body>
+</html>

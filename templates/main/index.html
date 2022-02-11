@@ -1,0 +1,75 @@
+{% extends 'main/basic.html' %} {% load static %}
+<!--body-->
+{% block body %}
+<ul class="nav justify-content-center mb-5">
+  {% for category in categories %} {% if category == currentCategory %}
+  <li class="nav-item active">
+    <a
+      class="btn btn-sm btn-light m-1"
+      role="button"
+      aria-current="page"
+      href="{% url 'category' category.id %}"
+      >{{category.title}}</a
+    >
+  </li>
+  {% else %}
+  <li class="nav-item active">
+    <a
+      class="btn btn-sm btn-outline-light m-1"
+      role="button"
+      aria-current="page"
+      href="{% url 'category' category.id %}"
+      >{{category.title}}</a
+    >
+  </li>
+  {% endif %} {% endfor %}
+</ul>
+<div class="row g-2">
+  {% if images|length > 0 %} {% for image in images %}
+  <div class="col-md-3">
+    <img
+      class="img"
+      onclick="setImageToModal('{{image.url.url}}')"
+      data-bs-toggle="modal"
+      data-bs-target="#preview"
+      src="{{image.url.url}}"
+    />
+  </div>
+  {% endfor %} {% else %}
+  <div class="col-md-12 mt-4 text-center">
+    <img
+      class="img-fluid my-4"
+      src="{% static 'main/images/sad.png' %}"
+      alt="notfound"
+    />
+
+    <h2>
+      There is no images found in
+      <span class="text-success">{{currentCategory}}</span>
+    </h2>
+  </div>
+
+  {% endif %}
+</div>
+
+<div class="modal fade" id="preview" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <img id="previewImage" src="" class="p-1" alt="image" />
+      <div class="d-flex p-1">
+        <a id="previewBtn" role="button" class="btn btn-outline-dark w-50 me-2"
+          >Preview</a
+        >
+        <a
+          id="downloadBtn"
+          role="button"
+          class="btn btn-success w-50"
+          href="#"
+          download
+          >Download</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

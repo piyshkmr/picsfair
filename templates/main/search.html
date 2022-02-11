@@ -1,0 +1,53 @@
+{% extends 'main/basic.html' %} {% load static %}
+<!--body-->
+{% block body %}
+<div class="row g-2">
+  {% if images|length > 0 %}
+  <div class="col-md-12 my-5">
+    <h3>Search results for <span class="text-success">{{query}}</span></h3>
+  </div>
+  {% for image in images %}
+  <div class="col-md-3">
+    <img
+      class="img"
+      onclick="setImageToModal('{{image.url.url}}')"
+      data-bs-toggle="modal"
+      data-bs-target="#preview"
+      src="{{image.url.url}}"
+    />
+  </div>
+  {% endfor %} {% else %}
+  <div class="col-md-12 mt-5">
+    <h2>Search results for <span class="text-success">{{query}}</span></h2>
+    <p>no results found for your query</p>
+    <ul>
+      <li>try another keyword</li>
+      <li>check the spelling</li>
+      <li>try to search by category</li>
+    </ul>
+  </div>
+
+  {% endif %}
+</div>
+
+<div class="modal" id="preview" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <img id="previewImage" src="" class="p-1" alt="image" />
+      <div class="d-flex p-1">
+        <a id="previewBtn" role="button" class="btn btn-outline-dark w-50 me-2"
+          >Preview</a
+        >
+        <a
+          id="downloadBtn"
+          role="button"
+          class="btn btn-success w-50"
+          href="#"
+          download
+          >Download</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,32 @@
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+#header {
+  background-color: black;
+  text-align: center;
+}
+
+#logo {
+  text-decoration: none;
+  color: #fff;
+}
+
+body {
+  background-color: black;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+img {
+  cursor: zoom-in;
+  user-select: none;
+}
+
+#navbar a {
+  text-decoration: none !important;
+}
